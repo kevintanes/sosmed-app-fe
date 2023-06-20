@@ -3,11 +3,12 @@ import { BiComment, BiLike, BiShare } from "react-icons/bi"
 import { API_URL } from '../helper';
 
 
-function CardFeed(props) {
-    //---------------------------- DATE POSTING ----------------------------------------------------
+function CardOtherFeed(props) {
+     //---------------------------- DATE POSTING ----------------------------------------------------
     // const [date, setDate] = React.useState(new Date().toISOString().split("T")[0]);
     let today = new Date().toISOString().split("T")[0];
-    // console.log(`ini dari today`, today);
+    console.log(`ini dari today`, today);
+
 
     const tanggal = () => {
         if (today == props.date.split("T")[0]) {
@@ -31,8 +32,6 @@ function CardFeed(props) {
         }
     }
 
-
-
     return (
         <div className=''>
             <div class="w-full mx-auto p-2 px-10 bg-white border border-gray-200 rounded-lg shadow mb-1">
@@ -49,11 +48,11 @@ function CardFeed(props) {
                         <button> <BiLike /></button>
                         <p> {props.like} </p>
                     </div>
-                    <button data-te-toggle="tooltip" title="coming soon">
-                        <BiComment />
+                    <button >
+                        <BiComment data-te-toggle="tooltip" title="coming soon"/>
                     </button>
-                    <button data-te-toggle="tooltip" title="coming soon">
-                        <BiShare />
+                    <button >
+                        <BiShare data-te-toggle="tooltip" title="coming soon"/>
                     </button>
                 </div>
             </div>
@@ -61,4 +60,4 @@ function CardFeed(props) {
     );
 }
 
-export default CardFeed;
+export default CardOtherFeed;

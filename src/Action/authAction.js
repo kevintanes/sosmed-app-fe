@@ -9,7 +9,7 @@ export const LoginAction = (data) => {
 };
 
 export const LogoutAction = () => {
-    localStorage.removeItem("shop_login")
+    localStorage.removeItem("sosmed_login")
     return {
         type: "LOGOUT"      // KARENA TIDAK BUTUH DATA MAKA DIPAKAI TYPE SAJA TANPA PAYLOAD
     };
@@ -18,14 +18,18 @@ export const LogoutAction = () => {
 export const mwKeepLogin = () => {
     return async (dispatch) => {
         try {
-            let token = localStorage.getItem("shop_login");
+            let token = localStorage.getItem("sosmed_login");
             if (token) {
-                let response = await axios.get(`${API_URL}/users?id=${token}`);
-                localStorage.setItem("shop_login", response.data[0].id);  // memperbarui localStorage
-                
+                let response = await axios.get(`${API_URL}/user/keeplogin`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+                localStorage.setItem("sosmed_login", response.data.token);  // memperbarui localStorage
+
                 dispatch({
                     type: "LOGIN_SUCCESS",
-                    payload: response.data[0]
+                    payload: response.data
                 }); // menyimpan ulang ke reducer      
             }
         } catch (error) {
