@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { API_URL } from '../helper';
 
 function Verify() {
     const params = useParams(); // useParams cuman menampilkan params nya saha
@@ -11,7 +12,7 @@ function Verify() {
 
     const onBtnVerify = async () => {
         try {
-            let res = await axios.patch("http://localhost:2000/user/verify",{ 
+            let res = await axios.patch(`${API_URL}/user/verify`,{ 
                  //paramater ke2 tidak di isi karena pembaharuannya akan di lakukan di backend nya
             }, {
                 headers : {
